@@ -1,12 +1,9 @@
-# Franklin Covey's QA Automation Engineer Challenge
-
 ## Process:
 - Fork this repository.
 - Complete the requirements that are explained right after this section.
 - Push your changes to your forked repository.
 - Send us the link to your forked repository.
 - We will review your code and get back to you.
-- Remember to grant access to your private repository to the following user: fc-eng-interviews
 
 ## Requirements:
 
