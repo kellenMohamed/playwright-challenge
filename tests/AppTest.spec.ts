@@ -25,7 +25,9 @@ test.describe('Todo Page', () => {
     
     await page.locator('id=submit').click();
     await page.waitForTimeout(5000);
-    await expect(page.locator('id=#alert-modal')).toContainText('Please fill in the title and description');
+    //await expect(page.locator('id=#alert-modal')).toContainText('Please fill in the title and description');
+    const modalMsg = page.locator('.id=#alert-modal')
+    await expect(modalMsg).toHaveText('Please fill in the title and description');
 
     });
 
@@ -168,15 +170,18 @@ test.describe('Todo Page', () => {
     }
   });
 
-  test('Should be possible to add 10 Completed ToDos', async ({
+  test.only('Should be possible to add 10 Completed ToDos', async ({
     page,
   }) => {
-    for (let i=0; i<=10;i++){
+    for (let i=0; i<14;i++){
       await page.fill('xpath=//*[@id="title"]','Test To Do Title ' + i);
       await page.fill('xpath=//*[@id="description"]','Test To Do Description ' + i);
       await page.click('xpath=//*[@id="submit"]');
-      await page.click('//*[@id="pending-todos"]/li[1]');  
-    }
+      await page.click('//*[@id="pending-todos"]/li[1]');   
+      
+      console.log(await page.locator('xpath=//*[@id="completed-todos"]/li['+ i +']'));
+      await expect(page.locator('#completed-todos').locator('li').nth(i)).toBeVisible();
+    } 
   });
   
 });
